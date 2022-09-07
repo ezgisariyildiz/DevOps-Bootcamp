@@ -2,15 +2,9 @@
 DevOps Bootcamp' i sonunda verilen proje ödevi
 
 
-1-GCP’de Kubernetes cluster kurulumu
-[bootcamproje.docx](https://github.com/ezgisariyildiz/DevOps-Bootcamp/files/9511012/bootcamproje.docx)
+1-GCP’de Kubernetes cluster kurulumu:
 
-2. Kubernetes üzerine MySQL kurulumu + doküman hazırlanması
-[bootcamproje-2.docx](https://github.com/ezgisariyildiz/DevOps-Bootcamp/files/9511150/bootcamproje-2.docx)
-
-3. Kubernetes üzerine WordPress kurulumu + otomatik ayarlar
-[bootcamproje-3.docx](https://github.com/ezgisariyildiz/DevOps-Bootcamp/files/9511200/bootcamproje-3.docx)
+İlk önce Google Cloud Platformu’ nda bir kullanıcı girişi yapmamız gerekiyor. Kullanıcı girişi yaptıktan sonra karşımıza welcome sayfası gelecektir. Bu sayfa karşımıza bir proje oluşturarak geliyor, muhtemelen adı ‘My First Project’ olacaktır. Projenin numarası, ID’ si ile beraber geliyor. Yeni bir proje oluşturmayı seçebilir veya bu projeden devam edebilirsiniz. 
+![qqq](https://user-images.githubusercontent.com/95285650/188975913-f27fd64b-b1c3-43db-8cff-ba04cf06c697.png)
 
 
-4. Ingress tanımı ile dışardan trafik alması için domain ayarı
-[4.docx](https://github.com/ezgisariyildiz/DevOps-Bootcamp/files/9511225/4.docx)
