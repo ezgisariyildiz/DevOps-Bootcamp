@@ -1,0 +1,77 @@
+// gcloud auth application-default login
+//
+provider "google" {
+  project = "bootcamp-361405"
+  region  = "europe-west3"
+  zone    = "europe-west3-b"
+ }
+
+ resource "google_compute_instance" "bootcamp-vm" {
+  name = "bootcamp"
+  machine_type = "e2-micro"
+
+  boot_disk {
+    initialize_params {
+      //gcloud compute images list
+      image = "ubuntu-os-cloud/ubuntu-2004-lts"
+    }
+  }
+  network_interface {
+    #A default networkis created for all GCP projects
+    network = google_compute_network.vpc_network.self_link
+    access_config {
+    }
+  }
+ }
+ 
+resource "google_compute_network" "vpc_network" {
+  name                    = "bootcamp-network"
+  auto_create_subnetworks = "true"
+  }
+  
+resource "google_container_cluster" "bootcamp" {
+  name                     = "bootcamp-gke"
+ 
+  remove_default_node_pool = true
+  initial_node_count       = 1
+ 
+  network = google_compute_network.vpc_network.name
+ }
+  
+resource "google_service_account" "nodepool" {
+  account_id   = "bootcamp-serviceaccount"
+  display_name = "BOOTCAMP Service Account"
+}
+
+resource "google_container_node_pool" "primary_preemptible_nodes" {
+  name = "bootcamp-node-pool"
+  cluster    = google_container_cluster.bootcamp.name
+  node_count = 3
+  
+  node_config {
+    preemptible  = true
+    machine_type = "e2-medium"
+    
+    service_account = google_service_account.nodepool.email
+    oauth_scopes    = [
+    "https://www.googleapis.com/auth/cloud-platform"
+    ]
+   }
+  }
+  resource "google_sql_database" "database" {
+  name     = "my-database"
+  instance = google_sql_database_instance.instance.name
+}
+
+# See versions at https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#database_version
+resource "google_sql_database_instance" "instance" {
+  name             = "my-database-instance"
+  region           = "europe-west3"
+  database_version = "MYSQL_8_0"
+  settings {
+    tier = "db-f1-micro"
+  }
+
+  deletion_protection  = "true"
+}
+  

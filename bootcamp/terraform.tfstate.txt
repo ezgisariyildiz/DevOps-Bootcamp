@@ -1,0 +1,308 @@
+{
+  "version": 4,
+  "terraform_version": "1.2.8",
+  "serial": 13,
+  "lineage": "2bd96e89-7089-e343-c774-4dc0706843db",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "google_compute_instance",
+      "name": "bootcamp-vm",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 6,
+          "attributes": {
+            "advanced_machine_features": [],
+            "allow_stopping_for_update": null,
+            "attached_disk": [],
+            "boot_disk": [
+              {
+                "auto_delete": true,
+                "device_name": "persistent-disk-0",
+                "disk_encryption_key_raw": "",
+                "disk_encryption_key_sha256": "",
+                "initialize_params": [
+                  {
+                    "image": "https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20220823",
+                    "labels": {},
+                    "size": 10,
+                    "type": "pd-standard"
+                  }
+                ],
+                "kms_key_self_link": "",
+                "mode": "READ_WRITE",
+                "source": "https://www.googleapis.com/compute/v1/projects/bootcamp-361405/zones/europe-west3-b/disks/bootcamp"
+              }
+            ],
+            "can_ip_forward": false,
+            "confidential_instance_config": [],
+            "cpu_platform": "AMD Rome",
+            "current_status": "RUNNING",
+            "deletion_protection": false,
+            "description": "",
+            "desired_status": null,
+            "enable_display": false,
+            "guest_accelerator": [],
+            "hostname": "",
+            "id": "projects/bootcamp-361405/zones/europe-west3-b/instances/bootcamp",
+            "instance_id": "4369701993581374224",
+            "label_fingerprint": "42WmSpB8rSM=",
+            "labels": {},
+            "machine_type": "e2-micro",
+            "metadata": {},
+            "metadata_fingerprint": "Lm4xA_wrQLU=",
+            "metadata_startup_script": null,
+            "min_cpu_platform": "",
+            "name": "bootcamp",
+            "network_interface": [
+              {
+                "access_config": [
+                  {
+                    "nat_ip": "34.107.10.134",
+                    "network_tier": "PREMIUM",
+                    "public_ptr_domain_name": ""
+                  }
+                ],
+                "alias_ip_range": [],
+                "ipv6_access_config": [],
+                "ipv6_access_type": "",
+                "name": "nic0",
+                "network": "https://www.googleapis.com/compute/v1/projects/bootcamp-361405/global/networks/bootcamp-network",
+                "network_ip": "10.156.0.3",
+                "nic_type": "",
+                "queue_count": 0,
+                "stack_type": "IPV4_ONLY",
+                "subnetwork": "https://www.googleapis.com/compute/v1/projects/bootcamp-361405/regions/europe-west3/subnetworks/bootcamp-network",
+                "subnetwork_project": "bootcamp-361405"
+              }
+            ],
+            "project": "bootcamp-361405",
+            "reservation_affinity": [],
+            "resource_policies": [],
+            "scheduling": [
+              {
+                "automatic_restart": true,
+                "instance_termination_action": "",
+                "min_node_cpus": 0,
+                "node_affinities": [],
+                "on_host_maintenance": "MIGRATE",
+                "preemptible": false,
+                "provisioning_model": "STANDARD"
+              }
+            ],
+            "scratch_disk": [],
+            "self_link": "https://www.googleapis.com/compute/v1/projects/bootcamp-361405/zones/europe-west3-b/instances/bootcamp",
+            "service_account": [],
+            "shielded_instance_config": [
+              {
+                "enable_integrity_monitoring": true,
+                "enable_secure_boot": false,
+                "enable_vtpm": true
+              }
+            ],
+            "tags": [],
+            "tags_fingerprint": "42WmSpB8rSM=",
+            "timeouts": null,
+            "zone": "europe-west3-b"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiNiJ9",
+          "dependencies": [
+            "google_compute_network.vpc_network"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_compute_network",
+      "name": "vpc_network",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "auto_create_subnetworks": true,
+            "delete_default_routes_on_create": false,
+            "description": "",
+            "enable_ula_internal_ipv6": false,
+            "gateway_ipv4": "",
+            "id": "projects/bootcamp-361405/global/networks/bootcamp-network",
+            "internal_ipv6_range": "",
+            "mtu": 0,
+            "name": "bootcamp-network",
+            "project": "bootcamp-361405",
+            "routing_mode": "REGIONAL",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/bootcamp-361405/global/networks/bootcamp-network",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19"
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_container_node_pool",
+      "name": "primary_preemptible_nodes",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "mode": "managed",
+      "type": "google_service_account",
+      "name": "nodepool",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "bootcamp-serviceaccount",
+            "description": "",
+            "disabled": false,
+            "display_name": "BOOTCAMP Service Account",
+            "email": "bootcamp-serviceaccount@bootcamp-361405.iam.gserviceaccount.com",
+            "id": "projects/bootcamp-361405/serviceAccounts/bootcamp-serviceaccount@bootcamp-361405.iam.gserviceaccount.com",
+            "name": "projects/bootcamp-361405/serviceAccounts/bootcamp-serviceaccount@bootcamp-361405.iam.gserviceaccount.com",
+            "project": "bootcamp-361405",
+            "timeouts": null,
+            "unique_id": "103692094334816315510"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDB9fQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_sql_database",
+      "name": "database",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "charset": "utf8mb4",
+            "collation": "utf8mb4_0900_ai_ci",
+            "id": "projects/bootcamp-361405/instances/my-database-instance/databases/my-database",
+            "instance": "my-database-instance",
+            "name": "my-database",
+            "project": "bootcamp-361405",
+            "self_link": "https://sqladmin.googleapis.com/sql/v1beta4/projects/bootcamp-361405/instances/my-database-instance/databases/my-database",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_sql_database_instance.instance"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_sql_database_instance",
+      "name": "instance",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "clone": [],
+            "connection_name": "bootcamp-361405:europe-west3:my-database-instance",
+            "database_version": "MYSQL_8_0",
+            "deletion_protection": true,
+            "encryption_key_name": null,
+            "first_ip_address": "34.159.150.201",
+            "id": "my-database-instance",
+            "ip_address": [
+              {
+                "ip_address": "34.159.150.201",
+                "time_to_retire": "",
+                "type": "PRIMARY"
+              }
+            ],
+            "master_instance_name": "",
+            "name": "my-database-instance",
+            "private_ip_address": "",
+            "project": "bootcamp-361405",
+            "public_ip_address": "34.159.150.201",
+            "region": "europe-west3",
+            "replica_configuration": [],
+            "restore_backup_context": [],
+            "root_password": null,
+            "self_link": "https://sqladmin.googleapis.com/sql/v1beta4/projects/bootcamp-361405/instances/my-database-instance",
+            "server_ca_cert": [
+              {
+                "cert": "-----BEGIN CERTIFICATE-----\nMIIDfzCCAmegAwIBAgIBADANBgkqhkiG9w0BAQsFADB3MS0wKwYDVQQuEyRkYTlj\nYjIyMi1hMzliLTRiODUtOWY0MC02YWIxOWE2ZGNhNTcxIzAhBgNVBAMTGkdvb2ds\nZSBDbG91ZCBTUUwgU2VydmVyIENBMRQwEgYDVQQKEwtHb29nbGUsIEluYzELMAkG\nA1UEBhMCVVMwHhcNMjIwOTA1MjAyMTEzWhcNMzIwOTAyMjAyMjEzWjB3MS0wKwYD\nVQQuEyRkYTljYjIyMi1hMzliLTRiODUtOWY0MC02YWIxOWE2ZGNhNTcxIzAhBgNV\nBAMTGkdvb2dsZSBDbG91ZCBTUUwgU2VydmVyIENBMRQwEgYDVQQKEwtHb29nbGUs\nIEluYzELMAkGA1UEBhMCVVMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB\nAQCp0gpov+e/jvz9XLC+NSihpJKvkieNo9tf5461ASN2ppbSUJVxKPyafrsmHEDl\nEPvr0p7On9IPPWOlyriwvpO+jUr44xWbKjN3QyDR/VUab48Xp42pP8LsFejwjEzW\nDoTKnw02C75XaW0DuUfq4Dvxt7kmfiwduBJQu1BHUq1JbLgksYEM7yDVQhY0dn0U\nPBh+cCuAmi3JGsPAxE/3N3dgVKb5YFwTkIZJVJYc9KxZVZgiXNnhtHO8J8LemAKF\nKmyn6yrzSSvnQ5ePWnGZpif5o7LxUuZUpEGHgfMVTr4MIsr0bMbRaGoz5eNa0dTl\nRRh+QvC/yfpma2/7BKM7Zsq/AgMBAAGjFjAUMBIGA1UdEwEB/wQIMAYBAf8CAQAw\nDQYJKoZIhvcNAQELBQADggEBAHbZsOy8SkMiJKXyDSq//SR9gUAMQp4gkXGFCLkV\nuLAv9astFxe7pC4B3Pblw4MQHF9SeF2hPfkqddtvkMPF0Tg2IHNJkbk1A2r51li1\n6mTGT5sAfJfcXtEDeWk+PtzaOFUHPLU5J2aItGe2bKl/53lgA3Kh2S5v89ptunVo\nsa/PeGTQUDcTVqG5cmPdqjVHzBAcr0pzLZayBsb7TeGNHUZGxARQe1t9EXmK079N\nStyskjBQ8xAnZ0E+nuzKyZDnMlaSpsYtxp4Zq3aUEq+es3nHroUDdZK04qZtTt9s\nx6c3uTAuSXU8bFoWK1bXT6SA2sBa2QAjYhy6cvVJ6TwWbHg=\n-----END CERTIFICATE-----",
+                "common_name": "C=US,O=Google\\, Inc,CN=Google Cloud SQL Server CA,dnQualifier=da9cb222-a39b-4b85-9f40-6ab19a6dca57",
+                "create_time": "2022-09-05T20:21:13.330Z",
+                "expiration_time": "2032-09-02T20:22:13.330Z",
+                "sha1_fingerprint": "1883d6131808de22b808e69e22ab483883e8445e"
+              }
+            ],
+            "service_account_email_address": "p1019043475283-e08s2p@gcp-sa-cloud-sql.iam.gserviceaccount.com",
+            "settings": [
+              {
+                "activation_policy": "ALWAYS",
+                "active_directory_config": [],
+                "availability_type": "ZONAL",
+                "backup_configuration": [
+                  {
+                    "backup_retention_settings": [
+                      {
+                        "retained_backups": 7,
+                        "retention_unit": "COUNT"
+                      }
+                    ],
+                    "binary_log_enabled": false,
+                    "enabled": false,
+                    "location": "",
+                    "point_in_time_recovery_enabled": false,
+                    "start_time": "10:00",
+                    "transaction_log_retention_days": 7
+                  }
+                ],
+                "collation": "",
+                "database_flags": [],
+                "disk_autoresize": true,
+                "disk_autoresize_limit": 0,
+                "disk_size": 10,
+                "disk_type": "PD_SSD",
+                "insights_config": [],
+                "ip_configuration": [
+                  {
+                    "allocated_ip_range": "",
+                    "authorized_networks": [],
+                    "ipv4_enabled": true,
+                    "private_network": "",
+                    "require_ssl": false
+                  }
+                ],
+                "location_preference": [
+                  {
+                    "follow_gae_application": "",
+                    "secondary_zone": "",
+                    "zone": "europe-west3-b"
+                  }
+                ],
+                "maintenance_window": [],
+                "password_validation_policy": [],
+                "pricing_plan": "PER_USE",
+                "sql_server_audit_config": [],
+                "tier": "db-f1-micro",
+                "user_labels": {},
+                "version": 1
+              }
+            ],
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInVwZGF0ZSI6MTgwMDAwMDAwMDAwMH19"
+        }
+      ]
+    }
+  ]
+}
