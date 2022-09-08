@@ -2,7 +2,7 @@
 DevOps Bootcamp' i sonunda verilen proje ödevi
 
 
-1-GCP’de Kubernetes cluster kurulumu:
+# 1-GCP’de Kubernetes cluster kurulumu:
 
 İlk önce Google Cloud Platformu’ nda bir kullanıcı girişi yapmamız gerekiyor. Kullanıcı girişi yaptıktan sonra karşımıza welcome sayfası gelecektir. Bu sayfa karşımıza bir proje oluşturarak geliyor, muhtemelen adı ‘My First Project’ olacaktır. Projenin numarası, ID’ si ile beraber geliyor. Yeni bir proje oluşturmayı seçebilir veya bu projeden devam edebilirsiniz. 
 
@@ -28,7 +28,7 @@ Node poollara baktığımızda bunlar aslında vm lerdir. Size data center(zone)
 
 ![6](https://user-images.githubusercontent.com/95285650/188977777-4649472b-1b94-430e-b2d9-93a26661b728.png)
 
-Nodes lara baktığımızda image type seçiyoruz. Boot diskise imajlarımızın ne kadar yer kaplayacağını belirletiyor. 100GB bizim için yeterli olacak.
+Nodes lara baktığımızda image type seçiyoruz. Boot diskise imajlarımızın ne kadar yer kaplayacağını belirletiyor.
 
 ![7](https://user-images.githubusercontent.com/95285650/188978194-025b7908-be23-4225-b095-427992c46b28.png)
 
@@ -36,11 +36,11 @@ Networking sekmesine geldiğimizde node başına kaç pod geleceğini belirtebil
 
 ![8](https://user-images.githubusercontent.com/95285650/188978534-4c7b9874-295f-4aa3-ae43-4a36ce9f9e30.png)
 
-Create e basarak cluster işlemimizi tamamlamış oluyoruz. Bu clusterı oluşturmak için bir başka yöntem daha var ve bu yöntemde terraform kullanmak. Ayrıca terraformla oluşturduğumuz cluster bize ekstra olarak default nodunu kapatıp yerine detaylarını verdiğimiz node umuzu oluşturuyor. 
+Create e basarak cluster işlemimizi tamamlamış oluyoruz. Bu clusterı oluşturmak için bir başka yöntem daha var ve bu yöntemde terraform kullanmak. Ayrıca terraformla oluşturduğumuz cluster bize ekstra olarak default nodunu kapatıp yerine detaylarını verdiğimiz node umuzu oluşturuyor.
 
 # TERRAFORM İLE GKE OLUŞTURMA:
 
-İlk olarak vscode üzerinden bir dosya oluşturuyoruz ve bu dosyanın içerisine bir main.tf adında file ekliyoruz. Terminalde:
+İlk olarak vscode üzerinden bir dosya oluşturuyoruz ve bu dosyanın içerisine bir main.tf adında file ekliyoruz-.tf uzantılı olması terraform kodlu olacağı anlamına geliyor-. Terminalde:
 
 -brew install --cask google-cloud-sdk
 
@@ -60,7 +60,7 @@ google cloud başlatılmış oluyor.
 
 Daha önceden tanımladığımız proje id, zone ve region bilgilerini yazarak projemize bağlanıyoruz.
 
-Desktop ta bootcamp adlı bir dosya oluşturduk. Vscode da bu dosyayı açtık ve sağ tıklayarak yeni bir file oluşturuyoruz. File ismi main.tf -.tf uzantılı olması terraform kodlu olacağı anlamına geliyor- . Bu dosyamızı şu şekilde yazıyoruz.
+Oluşturduğumuz main.tf dosyamızı şu şekilde yazıyoruz:
 
 ![9](https://user-images.githubusercontent.com/95285650/188979213-32f2ad7c-bce5-41e6-becd-8415b6dd2b6b.png)
 
@@ -80,14 +80,14 @@ Bunları tamamladıktan sonra vscod terminalinde:
 
 -terraform plan –out plan.out 
 
-Kodunu yazıyoruz, kendi oluşturduğu planı getiriyor ve bu planı uygulamaya döküyor. 
+Kodunu yazıyoruz, kendi oluşturduğu planı getiriyor ve onaylamamız durumunda bu planı uygulayacağını söylüyor. 
 
 -terraform apply "plan.out" 
 
 Bu kodu yazdığımızda ise planı uygulatmış oluyoruz.
 
 
-2. Kubernetes üzerine MySQL kurulumu + doküman hazırlanması
+# 2. Kubernetes üzerine MySQL kurulumu + doküman hazırlanması
 
 Aşağıdaki kodu oluşturduğumuz main.tf dosyamıza yazıyoruz. Bu kod Google Cloud' un desteklediği Cloud Sql veritabanını temsil eder.
 
@@ -153,7 +153,9 @@ komutunu girdik. Oluşturduğumuz hizmet hesabına client rolünü eklemek için
   
 ![14](https://user-images.githubusercontent.com/95285650/188984699-357d546b-7d6e-4e76-adc1-1a2ac90d1e2f.png)
 
-Role ve binding izinlerini vermemiz gerekiyor. Role bir kaynağa hangi erişimi verilmesi gerektiğini belirtiyor. Role ve policy bindingler aşağıdaki komutlarla oluşturuldu.
+Role ve binding izinlerini vermemiz gerekiyor. Rol, bir izin listesidir; her rol, önceden tanımlanmış bir IAM rolü veya kullanıcı tarafından oluşturulan özel bir rol olabilir. Bindings ise bir veya daha fazla üyeyi veya müdürü tek bir role bağlar. 
+
+Role ve policy bindingler aşağıdaki komutlarla oluşturuldu.
 
 -gcloud iam service-accounts add-iam-policy-binding \
   --role="roles/iam.workloadIdentityUser" \
@@ -173,7 +175,7 @@ Secretları oluşturduk:
   --from-literal=username=sqlserver \
   --from-literal=password=123456
   
- ![15](https://user-images.githubusercontent.com/95285650/188986239-a30cb0ab-a33a-4f9c-9c3f-54854962dec8.png)
+![15](https://user-images.githubusercontent.com/95285650/188986239-a30cb0ab-a33a-4f9c-9c3f-54854962dec8.png)
  
 Artifact repomuzu oluşturuyoruz:
 
@@ -209,17 +211,20 @@ Artık servisleri incelediğimizde aşağıdaki sonuçları alıyoruz:
 NAME                TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
 gke-cloud-sql-app   LoadBalancer   10.3.240.188   <pending>     80:30154/TCP   10s
 
-3. Kubernetes üzerine WordPress kurulumu + otomatik ayarlar
+
+# 3. Kubernetes üzerine WordPress kurulumu + otomatik ayarlar
 
 MYSQL üzerine Wordpress kurulumu ayarları yapıyoruz:
 
-storage.yaml oluşturduk kaydettik. Bu işlemden sonra sistem PV ve PVC işlemlerini onaylar. Persistent Volume, kalıcı verilerimizi depolayan ana makinedeki fiziksel bir biridir. Persistent Volume Claim ise kalıcı verilerimiz depolamak yani PV oluşturmak için yaptığımız taleptir. 
+storage.yaml oluşturduk kaydettik. Bu işlemden sonra sistem PV( Persistent Volume) ve PVC( Persistent Volume Claim) işlemlerini onaylar. 
+Persistent Volume, kalıcı verilerimizi depolayan ana makinedeki fiziksel bir birimdir. 
+Persistent Volume Claim ise kalıcı verilerimiz depolamak yani PV oluşturmak için yaptığımız taleptir. 
  
 ![16](https://user-images.githubusercontent.com/95285650/189094646-90a8ce83-0054-47e4-a1cb-c461f8948c53.png)
 
 ![17](https://user-images.githubusercontent.com/95285650/189094745-7ea5ecdb-3c22-4f80-a245-b1708d34ac28.png)
 
-mysql-deployment.yaml oluşturduk kaydettik. deploymennt.yaml dosyası MySQL dağıtımının kullanacağı kaynakları tanımlar.
+mysql-deployment.yaml oluşturduk kaydettik. deployment.yaml dosyası MySQL dağıtımının kullanacağı kaynakları tanımlar.
 
 ![18](https://user-images.githubusercontent.com/95285650/189094891-5665a417-60ff-4104-a2dc-543ac167bbb1.png)
 
@@ -244,14 +249,14 @@ Servisler ve podlar çalışıyor.
 ![5](https://user-images.githubusercontent.com/95285650/189095763-bcfa0701-b685-44f2-9ce1-f23699cc6ecb.png)
 
 
-4. Ingress tanımı ile dışardan trafik alması için domain ayarı
+# 4. Ingress tanımı ile dışardan trafik alması için domain ayarı
 
 Ingress, Kubernetes’ te çalıştırdığımız uygulamanın erişilmesi için dış trafiği Kubernetes servislerine bağlayan bir denetleyicidir.  Kubernetes Cluster’ ında oluşan network trafiğinin bir ayağı ingress dir ve ingress bir pod a, node a veya servise istek gelmesi olayıdır. Yani bir frontend uygulamasına dışarıdan gelen bir isteği Ingress olarak adlandırabiliriz. Kubernetes mimarisindeki ingress objesi ise tek bir Load Balancer üzerinden, http seviyesinde, kullanıcıya uygulamaya erişim imkanı sağlar. 
 Bizde Wordpress ile yaptığımız uygulamaya dış trafikten bağlanmaya çalışıyoruz. Bunun için ingress ile çalışmamız gerekiyor. Öncelikle, kubernetes üzerinden oluşturduğumuz wordpress uyglamamız için global bir ip adresine ihtiyacımız var. Terminale aşağıdaki komutu yazıyoruz:
 
 -gcloud compute addresses create kubernetes-ingress –global
 
-Bu kod bize bir ingress ip si sağlayacaktır. Outputta yer alan https adresi ingressle oluşturulmuş olup bu adresi url de aratabiliriz.
+Bu kod bize bir ingress ip si sağlayacaktır. Bu ip nin global olması önemli. İnternetten ulaşmamız için global olması gerekiyor. Outputta yer alan https adresi ingressle oluşturulmuş olup bu adresi url de aratabiliriz.
 
 Daha sonra bir EOF(End of File) dosyası oluşturuyoruz. EOF dosyası bize komut ekranından ayrılmadan dosya açar. Açılan dosyaya yazmak istediğimiz bilgieri gidikten sonra tekrar EOF yazarak bu dosya içinden ayrılabiliriz ve tekrar komut satırına dönmüş oluruz.
 Biz wordpress ingress için bir yaml dosyası açıyoruz. Bu dosyanın içerisinde kind, name, oluşturulan static ip nin adını giriyoruz ve dosyayı kaydedip çıkıyoruz.
@@ -262,7 +267,7 @@ Ingress ip si için bir wordpress-ing-ip.yaml dosyası oluşturuyoruz ve ve bu d
 
 ![7](https://user-images.githubusercontent.com/95285650/189102764-59d7b672-ddfb-4cb5-977a-d8914f9f046e.png)
 
-İngressin oluşturulup oluşturulmadığını öğrenmek için:
+Ingressin oluşturulup oluşturulmadığını öğrenmek için:
 
 -kubectl get ingress wordpress
 
