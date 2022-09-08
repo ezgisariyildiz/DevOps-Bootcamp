@@ -209,6 +209,7 @@ Artık servisleri incelediğimizde aşağıdaki sonuçları alıyoruz:
 -kubectl get services
 
 NAME                TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+
 gke-cloud-sql-app   LoadBalancer   10.3.240.188   <pending>     80:30154/TCP   10s
 
 
